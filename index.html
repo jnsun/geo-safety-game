@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>地质勘查安全录 - 安全生产培训互动小游戏</title>
+  <meta name="description" content="通过互动卡牌游戏，学习地质勘查安全生产知识。涵盖野外作业、钻探、物探、化探、测绘遥感等场景，双职业路线，19种结局。">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg0: #0d1a0d;
+      --bg1: #142414;
+      --paper: #efe6d2;
+      --orange: #d35400;
+      --orange-dark: #b84300;
+      --gold: #d3a24a;
+      --red: #b3252b;
+      --green: #6ea86b;
+      --ink: #2c2416;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: var(--bg0);
+      color: var(--paper);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* 背景装饰 */
+    .bg-decoration {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .bg-decoration::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 80%;
+      height: 100%;
+      background: radial-gradient(ellipse, rgba(211, 84, 0, 0.08) 0%, transparent 70%);
+    }
+
+    .bg-decoration::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 60%;
+      height: 80%;
+      background: radial-gradient(ellipse, rgba(110, 168, 107, 0.06) 0%, transparent 70%);
+    }
+
+    /* 容器 */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* 头部 */
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .game-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+      display: inline-block;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .game-title {
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: 8px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--paper) 0%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .game-subtitle {
+      font-size: 16px;
+      color: rgba(239, 230, 210, 0.6);
+      letter-spacing: 4px;
+      margin-bottom: 8px;
+    }
+
+    .game-tagline {
+      font-size: 14px;
+      color: var(--orange);
+      letter-spacing: 2px;
+    }
+
+    /* 开始按钮 */
+    .start-section {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .start-btn {
+      display: inline-block;
+      padding: 18px 64px;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 8px;
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(211, 84, 0, 0.3);
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .start-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(211, 84, 0, 0.4);
+    }
+
+    .start-btn:active {
+      transform: translateY(0);
+    }
+
+    .start-hint {
+      margin-top: 16px;
+      font-size: 13px;
+      color: rgba(239, 230, 210, 0.4);
+    }
+
+    /* 特色卡片 */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 56px;
+    }
+
+    .feature-card {
+      background: rgba(239, 230, 210, 0.04);
+      border: 1px solid rgba(239, 230, 210, 0.08);
+      border-radius: 12px;
+      padding: 24px 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      background: rgba(239, 230, 210, 0.06);
+      border-color: rgba(211, 162, 74, 0.3);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+
+    .feature-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .feature-desc {
+      font-size: 13px;
+      color: rgba(239, 230, 210, 0.6);
+      line-height: 1.6;
+    }
+
+    /* 游戏内容介绍 */
+    .content-section {
+      margin-bottom: 56px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--paper);
+      margin-bottom: 24px;
+      padding-left: 16px;
+      border-left: 4px solid var(--orange);
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+
+    .content-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      background: rgba(239, 230, 210, 0.03);
+      border-radius: 8px;
+    }
+
+    .content-item-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .content-item-text h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--paper);
+      margin-bottom: 4px;
+    }
+
+    .content-item-text p {
+      font-size: 12px;
+      color: rgba(239, 230, 210, 0.5);
+      line-height: 1.5;
+    }
+
+    /* 数据统计 */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 56px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 20px 12px;
+      background: rgba(239, 230, 210, 0.04);
+      border-radius: 12px;
+      border: 1px solid rgba(239, 230, 210, 0.06);
+    }
+
+    .stat-number {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--orange);
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: rgba(239, 230, 210, 0.5);
+    }
+
+    /* 玩法说明 */
+    .how-to-play {
+      background: rgba(239, 230, 210, 0.04);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 56px;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      width: 36px;
+      height: 36px;
+      background: var(--orange);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .step-content h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--paper);
+      margin-bottom: 4px;
+    }
+
+    .step-content p {
+      font-size: 13px;
+      color: rgba(239, 230, 210, 0.6);
+      line-height: 1.6;
+    }
+
+    /* 底部 */
+    .footer {
+      text-align: center;
+      padding-top: 32px;
+      border-top: 1px solid rgba(239, 230, 210, 0.08);
+    }
+
+    .footer p {
+      font-size: 12px;
+      color: rgba(239, 230, 210, 0.3);
+      margin-bottom: 8px;
+    }
+
+    .footer a {
+      color: var(--orange);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* 响应式 */
+    @media (max-width: 600px) {
+      .container {
+        padding: 24px 16px;
+      }
+
+      .game-icon {
+        font-size: 48px;
+      }
+
+      .game-title {
+        font-size: 28px;
+        letter-spacing: 4px;
+      }
+
+      .game-subtitle {
+        font-size: 14px;
+        letter-spacing: 2px;
+      }
+
+      .start-btn {
+        padding: 16px 48px;
+        font-size: 18px;
+        letter-spacing: 4px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat-number {
+        font-size: 24px;
+      }
+
+      .how-to-play {
+        padding: 20px;
+      }
+
+      .section-title {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-decoration"></div>
+  
+  <div class="container">
+    <!-- 头部 -->
+    <header class="header">
+      <div class="game-icon">⛏️</div>
+      <h1 class="game-title">地质勘查安全录</h1>
+      <p class="game-subtitle">GEOLOGICAL SAFETY LEDGER</p>
+      <p class="game-tagline">安全生产培训 · 互动卡牌游戏</p>
+    </header>
+
+    <!-- 开始按钮 -->
+    <section class="start-section">
+      <a href="game.html" class="start-btn">开始游戏</a>
+      <p class="start-hint">💡 游戏进度自动保存在本地浏览器，约15分钟可完成一周目</p>
+    </section>
+
+    <!-- 游戏特色 -->
+    <section class="features">
+      <div class="feature-card">
+        <div class="feature-icon">🎭</div>
+        <h3 class="feature-title">双职业路线</h3>
+        <p class="feature-desc">专业技术路线与项目管理路线，不同的职业发展轨迹</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📖</div>
+        <h3 class="feature-title">真实场景</h3>
+        <p class="feature-desc">基于地质勘查真实工作场景，野外作业、钻探、物探等</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚖️</div>
+        <h3 class="feature-title">两难抉择</h3>
+        <p class="feature-desc">每个选择都有代价，安全与进度、合规与效率的博弈</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📚</div>
+        <h3 class="feature-title">知识小课堂</h3>
+        <p class="feature-desc">每个选项附带法规依据，在游戏中学习安全知识</p>
+      </div>
+    </section>
+
+    <!-- 数据统计 -->
+    <section class="stats">
+      <div class="stat-item">
+        <div class="stat-number">10</div>
+        <div class="stat-label">章节</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">53</div>
+        <div class="stat-label">张卡牌</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">19</div>
+        <div class="stat-label">种结局</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">知识覆盖</div>
+      </div>
+    </section>
+
+    <!-- 游戏内容 -->
+    <section class="content-section">
+      <h2 class="section-title">涵盖业务场景</h2>
+      <div class="content-grid">
+        <div class="content-item">
+          <div class="content-item-icon">🔬</div>
+          <div class="content-item-text">
+            <h4>地球物理勘查</h4>
+            <p>物探设备操作、野外数据采集、电磁安全</p>
+          </div>
+        </div>
+        <div class="content-item">
+          <div class="content-item-icon">🧪</div>
+          <div class="content-item-text">
+            <h4>地球化学勘查</h4>
+            <p>化探样品采集、化学品管理、实验室安全</p>
+          </div>
+        </div>
+        <div class="content-item">
+          <div class="content-item-icon">⛏️</div>
+          <div class="content-item-text">
+            <h4>钻探工程</h4>
+            <p>钻机操作、钻孔施工、井下作业安全</p>
+          </div>
+        </div>
+        <div class="content-item">
+          <div class="content-item-icon">📡</div>
+          <div class="content-item-text">
+            <h4>测绘与遥感</h4>
+            <p>野外测量、无人机操作、高处作业安全</p>
+          </div>
+        </div>
+        <div class="content-item">
+          <div class="content-item-icon">🗺️</div>
+          <div class="content-item-text">
+            <h4>地质勘查</h4>
+            <p>野外填图、地质编录、复杂地形作业</p>
+          </div>
+        </div>
+        <div class="content-item">
+          <div class="content-item-icon">🔐</div>
+          <div class="content-item-text">
+            <h4>综合安全管理</h4>
+            <p>质量安全、保密安全、网络安全、应急管理</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 玩法说明 -->
+    <section class="how-to-play">
+      <h2 class="section-title">游戏玩法</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h4>阅读场景，做出选择</h4>
+            <p>每张卡牌描述一个真实的工作场景，你需要在多个选项中做出决策。每个选项都有不同的代价和收益。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h4>查看结果，学习知识</h4>
+            <p>选择后会显示结果和属性变化，同时附带"安全知识小课堂"，给出相关法规依据和安全要点。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h4>管理状态，规避风险</h4>
+            <p>关注技能、威信、安全、精力四个状态值，注意积累的隐患和违章，它们可能在关键时刻引爆。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h4>选择路线，迎接结局</h4>
+            <p>第4章结束时选择职业路线（专业技术/项目管理），不同路线有不同的章节和结局，共19种结局等你探索。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 再次开始按钮 -->
+    <section class="start-section" style="margin-bottom: 32px;">
+      <a href="game.html" class="start-btn">开始游戏</a>
+    </section>
+
+    <!-- 底部 -->
+    <footer class="footer">
+      <p>地质勘查安全录 · 安全生产培训互动小游戏</p>
+      <p>本游戏仅供安全生产培训教育使用，场景和人物均为虚构</p>
+      <p>参考法规：《安全生产法》《金属非金属矿山安全规程》《地质勘查安全规程》等</p>
+    </footer>
+  </div>
+</body>
+</html>
