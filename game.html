@@ -1510,7 +1510,10 @@ function selectOption(optIndex) {
     noteDiv.style.display = 'none';
   }
   
-  document.getElementById('result-modal-overlay').classList.add('show');
+  // 显示结果弹窗（重置display，确保内联样式不影响）
+  const modalOverlay = document.getElementById('result-modal-overlay');
+  modalOverlay.style.display = '';
+  modalOverlay.classList.add('show');
   
   // 重置弹窗滚动位置到顶部
   setTimeout(() => {
@@ -1534,6 +1537,11 @@ function chooseCareerPath(path) {
 
 // ===== 下一张卡牌 =====
 function nextCard() {
+  // 先关闭结果弹窗
+  const modalOverlay = document.getElementById('result-modal-overlay');
+  modalOverlay.classList.remove('show');
+  modalOverlay.style.display = 'none';
+  
   const visibleCards = getVisibleCards(gameState.chapterIndex);
   
   // 检查是否触发结局
@@ -1597,8 +1605,8 @@ function determineFinalEnding() {
     if (s.safety <= 20 && s.hazards >= 1) {
       return 'tech_quality_accident';
     }
-    // 坏结局：数据造假被开除
-    if (s.violations >= 2 && s.skill <= 50) {
+    // 坏结局：数据造假被开除（需要多次严重违规且技能不足）
+    if (s.violations >= 4 && s.skill <= 50) {
       return 'tech_data_fraud';
     }
     // 最佳：教授级高级工程师
@@ -1606,7 +1614,7 @@ function determineFinalEnding() {
       return 'tech_professor';
     }
     // 优秀：技术专家
-    if (s.skill >= 80 && s.safety >= 60) {
+    if (s.skill >= 70 && s.safety >= 50) {
       return 'tech_expert';
     }
     // 转行：技术讲师（精力不足，选择转行）
@@ -1614,11 +1622,11 @@ function determineFinalEnding() {
       return 'tech_teacher';
     }
     // 创业：技术咨询公司
-    if (s.skill >= 75 && s.authority >= 60 && s.energy > 35) {
+    if (s.skill >= 70 && s.authority >= 55 && s.energy > 35) {
       return 'tech_consulting';
     }
     // 良好：注册岩土工程师
-    if (s.skill >= 70 && s.safety >= 50) {
+    if (s.skill >= 65 && s.safety >= 45) {
       return 'tech_geologist';
     }
     // 普通：坚守一线技术岗
@@ -1626,8 +1634,8 @@ function determineFinalEnding() {
   }
   
   // ===== 管理路线结局 =====
-  // 坏结局：违章指挥被判刑
-  if (s.violations >= 3) {
+  // 坏结局：违章指挥被判刑（需要多次严重违规）
+  if (s.violations >= 5) {
     return 'mgmt_criminal';
   }
   // 坏结局：安全事故被追责
@@ -1639,7 +1647,7 @@ function determineFinalEnding() {
     return 'mgmt_ceo';
   }
   // 优秀：公司安全总监
-  if (s.authority >= 80 && s.safety >= 75) {
+  if (s.authority >= 70 && s.safety >= 65) {
     return 'mgmt_safety_director';
   }
   // 转行：安全培训师（精力不足，选择转行）
@@ -1647,11 +1655,11 @@ function determineFinalEnding() {
     return 'mgmt_trainer';
   }
   // 创业：安全咨询公司（技能较高者选择创业）
-  if (s.authority >= 70 && s.safety >= 60 && s.skill >= 60) {
+  if (s.authority >= 65 && s.safety >= 55 && s.skill >= 60) {
     return 'mgmt_consulting';
   }
   // 良好：经营实体总经理（技能较低者留在体制内）
-  if (s.authority >= 70 && s.safety >= 60) {
+  if (s.authority >= 65 && s.safety >= 55) {
     return 'mgmt_entity_manager';
   }
   // 普通：坚守项目管理岗
@@ -1663,11 +1671,17 @@ function showEnding(endingId) {
   const ending = GAME_DATA.endings[endingId];
   if (!ending) {
     console.error('结局不存在:', endingId);
+    // 即使结局不存在，也要关闭弹窗并显示默认结局
+    document.getElementById('result-modal-overlay').style.display = 'none';
+    document.getElementById('result-modal-overlay').classList.remove('show');
+    showScreen('screen-ending');
     return;
   }
   
-  // 关闭结果弹窗（关键修复：避免弹窗覆盖结局页面）
-  document.getElementById('result-modal-overlay').classList.remove('show');
+  // 关闭结果弹窗（多种方式确保关闭）
+  const modalOverlay = document.getElementById('result-modal-overlay');
+  modalOverlay.classList.remove('show');
+  modalOverlay.style.display = 'none';
   
   document.getElementById('ending-kicker').textContent = ending.kicker || '';
   document.getElementById('ending-title').textContent = ending.title || '';
@@ -1680,6 +1694,9 @@ function showEnding(endingId) {
   
   localStorage.removeItem('geo_safety_save');
   showScreen('screen-ending');
+  
+  // 确保结局页面在最上层
+  document.getElementById('screen-ending').style.zIndex = '300';
 }
 
 // ===== 菜单 =====
