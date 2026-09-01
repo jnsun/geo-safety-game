@@ -1599,32 +1599,32 @@ function determineFinalEnding() {
   
   // ===== 技术路线结局 =====
   if (path === 'tech') {
-    // 坏结局：质量事故
-    if (s.safety <= 20 && s.hazards >= 1) {
+    // 坏结局：质量事故（安全过低且有隐患）
+    if (s.safety <= 30 && s.hazards >= 1) {
       return 'tech_quality_accident';
     }
-    // 坏结局：数据造假被开除（需要多次严重违规且技能不足）
-    if (s.violations >= 5 && s.skill <= 50) {
+    // 坏结局：数据造假被开除（多次违规且技能不足）
+    if (s.violations >= 4 && s.skill <= 55) {
       return 'tech_data_fraud';
     }
-    // 最佳：教授级高级工程师
-    if (s.skill >= 85 && s.safety >= 70 && s.violations === 0) {
+    // 最佳：教授级高级工程师（极高要求）
+    if (s.skill >= 90 && s.safety >= 75 && s.violations === 0) {
       return 'tech_professor';
     }
     // 优秀：技术专家
-    if (s.skill >= 70 && s.safety >= 50) {
+    if (s.skill >= 80 && s.safety >= 60) {
       return 'tech_expert';
     }
-    // 转行：技术讲师（精力不足，选择转行）
-    if (s.skill >= 70 && s.energy <= 35) {
+    // 转行：技术讲师（精力不足）
+    if (s.skill >= 75 && s.energy <= 35) {
       return 'tech_teacher';
     }
     // 创业：技术咨询公司
-    if (s.skill >= 70 && s.authority >= 55 && s.energy > 35) {
+    if (s.skill >= 75 && s.authority >= 60 && s.energy > 35) {
       return 'tech_consulting';
     }
     // 良好：注册岩土工程师
-    if (s.skill >= 65 && s.safety >= 45) {
+    if (s.skill >= 70 && s.safety >= 45) {
       return 'tech_geologist';
     }
     // 普通：坚守一线技术岗
@@ -1632,32 +1632,32 @@ function determineFinalEnding() {
   }
   
   // ===== 管理路线结局 =====
-  // 坏结局：违章指挥被判刑（需要多次严重违规）
-  if (s.violations >= 7) {
+  // 坏结局：违章指挥被判刑（多次严重违规）
+  if (s.violations >= 6) {
     return 'mgmt_criminal';
   }
-  // 坏结局：安全事故被追责
-  if (s.safety <= 15 && s.hazards >= 1) {
+  // 坏结局：安全事故被追责（安全过低且有隐患）
+  if (s.safety <= 25 && s.hazards >= 1) {
     return 'mgmt_safety_accident';
   }
-  // 最佳：公司总经理
-  if (s.authority >= 85 && s.safety >= 70 && s.violations === 0) {
+  // 最佳：公司总经理（极高要求）
+  if (s.authority >= 90 && s.safety >= 75 && s.violations === 0) {
     return 'mgmt_ceo';
   }
   // 优秀：公司安全总监
-  if (s.authority >= 70 && s.safety >= 65) {
+  if (s.authority >= 80 && s.safety >= 70) {
     return 'mgmt_safety_director';
   }
-  // 转行：安全培训师（精力不足，选择转行）
-  if (s.safety >= 60 && s.energy <= 35) {
+  // 转行：安全培训师（精力不足但安全意识强）
+  if (s.safety >= 55 && s.energy <= 35) {
     return 'mgmt_trainer';
   }
-  // 创业：安全咨询公司（技能较高者选择创业）
-  if (s.authority >= 65 && s.safety >= 55 && s.skill >= 60) {
+  // 创业：安全咨询公司
+  if (s.authority >= 75 && s.safety >= 50 && s.skill >= 60) {
     return 'mgmt_consulting';
   }
-  // 良好：经营实体总经理（技能较低者留在体制内）
-  if (s.authority >= 65 && s.safety >= 55) {
+  // 良好：经营实体总经理
+  if (s.authority >= 70 && s.safety >= 50) {
     return 'mgmt_entity_manager';
   }
   // 普通：坚守项目管理岗

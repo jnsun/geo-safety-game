@@ -64,8 +64,7 @@
             {
               "label": "「不行。但我走得慢，会多检查两遍路线。」",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -564,9 +563,9 @@
             {
               "label": "用真实数据。达不到指标就是达不到，不能造假。",
               "effects": {
-                "safety": -8,
+                "safety": -10,
                 "violations": 1,
-                "hazards": 4,
+                "hazards": 5,
                 "authority": 1,
                 "energy": 2
               },
@@ -740,8 +739,7 @@
             {
               "label": "让老王上边坡，但派人专门监护",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -815,9 +813,9 @@
             {
               "label": "按方案B，省点钱。项目利润重要，安全方面差不多就行。",
               "effects": {
-                "safety": -5,
+                "safety": -6,
                 "violations": 1,
-                "hazards": 3,
+                "hazards": 4,
                 "authority": 1,
                 "energy": 2
               },
@@ -882,8 +880,7 @@
             {
               "label": "坚持搞演练。停产半天，三个科目全搞",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -894,9 +891,9 @@
             {
               "label": "搞一个科目，拍几张照片，应付检查",
               "effects": {
-                "safety": -5,
+                "safety": -6,
                 "violations": 1,
-                "hazards": 3,
+                "hazards": 4,
                 "authority": 1,
                 "energy": 2
               },
@@ -981,8 +978,7 @@
             {
               "label": "折中：主要成绩如实说，问题部分用「基本整改」「持续改进」等措辞弱化。",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -1089,9 +1085,9 @@
             {
               "label": "不提交。数据没整理完，不能造假",
               "effects": {
-                "safety": -8,
+                "safety": -10,
                 "violations": 1,
-                "hazards": 4,
+                "hazards": 5,
                 "authority": 1,
                 "energy": 2
               },
@@ -1109,9 +1105,9 @@
             {
               "label": "造假。把安全数据写得好看一点",
               "effects": {
-                "safety": -8,
+                "safety": -10,
                 "violations": 1,
-                "hazards": 4,
+                "hazards": 5,
                 "authority": 1,
                 "energy": 2
               },
@@ -1150,8 +1146,7 @@
             {
               "label": "建议甲方走正式保密审批流程，同时提供公开版成果报告。",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -1217,8 +1212,7 @@
             {
               "label": "按建议书逐条整改，但不碰历史问题",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -1229,8 +1223,7 @@
             {
               "label": "把整改交给外部咨询公司，自己专心搞技术",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -1266,8 +1259,7 @@
             {
               "label": "如实说明：这些问题确实存在，我们立即整改",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -1315,9 +1307,9 @@
             {
               "label": "如实说明情况，承认资料存在造假和不规范的地方。",
               "effects": {
-                "safety": -8,
+                "safety": -10,
                 "violations": 1,
-                "hazards": 4,
+                "hazards": 5,
                 "authority": 1,
                 "energy": 2
               },
@@ -1327,9 +1319,9 @@
             {
               "label": "隐瞒问题，说资料都是真实的，希望检查组看不出来。",
               "effects": {
-                "safety": -8,
+                "safety": -10,
                 "violations": 1,
-                "hazards": 4,
+                "hazards": 5,
                 "authority": 1,
                 "energy": 2
               },
@@ -1339,9 +1331,9 @@
             {
               "label": "部分承认：承认培训和检查记录有不规范的地方，但否认人员证有问题。",
               "effects": {
-                "safety": -5,
+                "safety": -6,
                 "violations": 1,
-                "hazards": 3,
+                "hazards": 4,
                 "authority": 1,
                 "energy": 2
               },
@@ -1370,9 +1362,9 @@
             {
               "label": "先把眼前应付过去，剩下的以后再说",
               "effects": {
-                "safety": -5,
+                "safety": -6,
                 "violations": 1,
-                "hazards": 3,
+                "hazards": 4,
                 "authority": 1,
                 "energy": 2
               },
@@ -1419,9 +1411,9 @@
             {
               "label": "「先把表面问题整改了，应付过复查再说。」",
               "effects": {
-                "safety": -5,
+                "safety": -6,
                 "violations": 1,
-                "hazards": 3,
+                "hazards": 4,
                 "authority": 1,
                 "energy": 2
               },
@@ -1459,8 +1451,7 @@
             {
               "label": "「制度的问题，就改制度；人的问题，就教育人。不要一上来就追责。」",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -1534,9 +1525,9 @@
             {
               "label": "严肃处理。安全检查记录造假是原则问题，必须按制度处罚，同时通报全公司。",
               "effects": {
-                "safety": -8,
+                "safety": -10,
                 "violations": 1,
-                "hazards": 4,
+                "hazards": 5,
                 "authority": 1,
                 "energy": 2
               },
@@ -1554,8 +1545,7 @@
             {
               "label": "处罚但留余地：给予警告处分，不通报，同时安排他重新补做检查并整改。",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -1577,8 +1567,7 @@
             {
               "label": "强制岗位分离：安全检查交安全员，材料采购交别人",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -1618,8 +1607,7 @@
             {
               "label": "拒绝签字。必须先做边坡稳定性评估，制定专项方案，否则不能开工。",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -1638,8 +1626,7 @@
             {
               "label": "暂缓签字，立即组织专家现场评估，同时向甲方说明情况争取工期。",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -1818,8 +1805,7 @@
             {
               "label": "完整说明问题，并出具《安全生产费用整改方案》和时间表",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -1839,8 +1825,7 @@
             {
               "label": "如实说明问题，申请延后审核",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -1863,8 +1848,7 @@
             {
               "label": "如实说明每起事故的原因、处理和整改措施",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -1904,8 +1888,7 @@
             {
               "label": "如实说明问题，并立即组织演练和修订",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -1916,8 +1899,7 @@
             {
               "label": "找一些以前的照片，做成「演练记录」",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -1928,8 +1910,7 @@
             {
               "label": "如实说明问题，申请延后审核",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -2017,9 +1998,9 @@
             {
               "label": "披露「已取得社保部门无违规证明」，不做测算",
               "effects": {
-                "safety": -5,
+                "safety": -6,
                 "violations": 1,
-                "hazards": 3,
+                "hazards": 4,
                 "authority": 1,
                 "energy": 2
               },
@@ -2050,9 +2031,9 @@
             {
               "label": "隐瞒问题，带核查组去「准备好」的仓库和项目现场，希望蒙混过关。",
               "effects": {
-                "safety": -8,
+                "safety": -10,
                 "violations": 1,
-                "hazards": 4,
+                "hazards": 5,
                 "authority": 1,
                 "energy": 2
               },
@@ -2097,8 +2078,7 @@
             {
               "label": "向项目经理投诉这个检查员「影响工作效率」",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -2122,8 +2102,7 @@
             {
               "label": "不利用这个信息，按正常工作安排，明天如实接受检查。",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -2134,8 +2113,7 @@
             {
               "label": "利用这个信息，连夜组织整改，争取明天检查不出大问题。",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
@@ -2146,8 +2124,7 @@
             {
               "label": "利用信息，但只整改真正的重大隐患，同时主动向检查组说明情况。",
               "effects": {
-                "safety": 1,
-                "hazards": -1,
+                "hazards": -2,
                 "energy": -2,
                 "authority": 1,
                 "skill": 1
