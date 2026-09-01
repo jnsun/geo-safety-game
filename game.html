@@ -1461,7 +1461,7 @@ function selectOption(optIndex) {
   }
   
   // 自然消耗
-  gameState.energy -= 2;
+  gameState.energy -= 1;
   
   // 限制范围
   gameState.skill = Math.max(0, Math.min(100, gameState.skill));
@@ -1469,12 +1469,23 @@ function selectOption(optIndex) {
   gameState.safety = Math.max(0, Math.min(100, gameState.safety));
   gameState.energy = Math.max(0, Math.min(100, gameState.energy));
   
-  // 记录历史
+  // 记录历史（排除history字段，避免循环引用）
+  const stateSnapshot = {
+    skill: gameState.skill,
+    authority: gameState.authority,
+    safety: gameState.safety,
+    energy: gameState.energy,
+    hazards: gameState.hazards,
+    violations: gameState.violations,
+    chapterIndex: gameState.chapterIndex,
+    cardIndex: gameState.cardIndex,
+    careerPath: gameState.careerPath
+  };
   gameState.history.push({
     chapter: gameState.chapterIndex,
     card: gameState.cardIndex,
     option: optIndex,
-    state: {...gameState}
+    state: stateSnapshot
   });
   
   // 显示结果弹窗
