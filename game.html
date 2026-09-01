@@ -1609,17 +1609,17 @@ function determineFinalEnding() {
     if (s.skill >= 80 && s.safety >= 60) {
       return 'tech_expert';
     }
+    // 转行：技术讲师（精力不足，选择转行）
+    if (s.skill >= 70 && s.energy <= 35) {
+      return 'tech_teacher';
+    }
     // 创业：技术咨询公司
-    if (s.skill >= 75 && s.authority >= 50) {
+    if (s.skill >= 75 && s.authority >= 60 && s.energy > 35) {
       return 'tech_consulting';
     }
     // 良好：注册岩土工程师
     if (s.skill >= 70 && s.safety >= 50) {
       return 'tech_geologist';
-    }
-    // 转行：技术讲师
-    if (s.skill >= 70 && s.energy <= 40) {
-      return 'tech_teacher';
     }
     // 普通：坚守一线技术岗
     return 'tech_frontier';
@@ -1642,17 +1642,17 @@ function determineFinalEnding() {
   if (s.authority >= 80 && s.safety >= 75) {
     return 'mgmt_safety_director';
   }
-  // 创业：安全咨询公司
-  if (s.authority >= 70 && s.safety >= 60) {
+  // 转行：安全培训师（精力不足，选择转行）
+  if (s.safety >= 60 && s.energy <= 35) {
+    return 'mgmt_trainer';
+  }
+  // 创业：安全咨询公司（技能较高者选择创业）
+  if (s.authority >= 70 && s.safety >= 60 && s.skill >= 60) {
     return 'mgmt_consulting';
   }
-  // 良好：经营实体总经理
+  // 良好：经营实体总经理（技能较低者留在体制内）
   if (s.authority >= 70 && s.safety >= 60) {
     return 'mgmt_entity_manager';
-  }
-  // 转行：安全培训师
-  if (s.safety >= 60 && s.energy <= 40) {
-    return 'mgmt_trainer';
   }
   // 普通：坚守项目管理岗
   return 'mgmt_project';
