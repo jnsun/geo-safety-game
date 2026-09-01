@@ -1077,23 +1077,14 @@ body {
   <div class="path-card">
     <div class="path-kicker">职业方向抉择</div>
     <h2 class="path-title">你的职业道路</h2>
-    <p class="path-desc">在项目部工作四年后，你面临职业发展的关键抉择。是继续深耕专业技术，走技术专家路线？还是转向安全管理，走管理路线？不同的选择，将决定你未来的职业命运。</p>
     <div class="path-options">
       <div class="path-option tech" onclick="chooseCareerPath('tech')">
         <div class="path-icon">🔬</div>
         <div class="path-name">专业技术路线</div>
-        <div class="path-desc-short">经营实体技术负责人 → 公司技术部 → 公司总工程师 → 教授级高级工程师</div>
-        <div class="path-features">
-          <span>技术决策</span><span>质量管控</span><span>数据真实</span><span>标准规范</span>
-        </div>
       </div>
       <div class="path-option management" onclick="chooseCareerPath('management')">
         <div class="path-icon">🛡️</div>
         <div class="path-name">项目管理路线</div>
-        <div class="path-desc-short">经营实体安全总监 → 公司安全环保部 → 公司安全总监 → 公司副总经理</div>
-        <div class="path-features">
-          <span>安全管理</span><span>人员管理</span><span>应急处置</span><span>制度建设</span>
-        </div>
       </div>
     </div>
   </div>
@@ -1391,6 +1382,13 @@ function renderCard() {
   document.getElementById('card-title').textContent = card.title || '';
   document.getElementById('card-body').innerHTML = highlightText(card.text);
   
+  // 重置题干滚动位置到顶部（关键修复：避免显示上一张卡的滚动位置）
+  const cardText = document.querySelector('.card-text');
+  if (cardText) cardText.scrollTop = 0;
+  
+  // 重置页面滚动位置
+  window.scrollTo(0, 0);
+  
   // 渲染选项（添加A/B/C字母标识）
   const optionsArea = document.getElementById('options-area');
   optionsArea.innerHTML = '';
@@ -1606,7 +1604,7 @@ function determineFinalEnding() {
       return 'tech_quality_accident';
     }
     // 坏结局：数据造假被开除（需要多次严重违规且技能不足）
-    if (s.violations >= 4 && s.skill <= 50) {
+    if (s.violations >= 5 && s.skill <= 50) {
       return 'tech_data_fraud';
     }
     // 最佳：教授级高级工程师
@@ -1635,7 +1633,7 @@ function determineFinalEnding() {
   
   // ===== 管理路线结局 =====
   // 坏结局：违章指挥被判刑（需要多次严重违规）
-  if (s.violations >= 5) {
+  if (s.violations >= 7) {
     return 'mgmt_criminal';
   }
   // 坏结局：安全事故被追责
