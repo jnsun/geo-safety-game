@@ -1577,16 +1577,16 @@ function nextCard() {
 
 // ===== 检查即时结局 =====
 function checkEnding() {
-  // 精力归零
-  if (gameState.energy <= 0) {
+  // 精力耗尽（精力过低，无法继续工作）
+  if (gameState.energy <= 25) {
     return 'burnout';
   }
-  // 安全过低且有隐患
-  if (gameState.safety <= 10 && gameState.hazards > 0) {
+  // 安全过低且有隐患，可能发生事故受伤
+  if (gameState.safety <= 30 && gameState.hazards > 0) {
     return 'accident_injury';
   }
-  // 安全归零
-  if (gameState.safety <= 0) {
+  // 安全归零，发生严重事故死亡
+  if (gameState.safety <= 10) {
     return 'accident_death';
   }
   return null;
